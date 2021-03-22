@@ -32,16 +32,21 @@ public class MailService {
 
 
     public void sendEmail() throws MessagingException {
-        String body = "";
+        String body = "Bonjour,\n" +
+                "\n" +
+                "Nous vous confirmons votre inscription dans les listes de rapatriement.\n" +
+                "Les opérations de rapatriement étant suspendu, vous serez contacté dès que ceux-ci reprendront\n" +
+                "\n" +
+                "Cordialement,";
         MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,true);
             messageHelper.setFrom(contactFrom);
             messageHelper.setTo(contactTo);
             messageHelper.setSubject(subject);
             messageHelper.setText(body);
-            messageHelper.setPriority(1);
+        /*    messageHelper.setPriority(1);
             FileSystemResource file = new FileSystemResource(new File("C:\\Users\\Naciim\\Desktop\\Nouveau dossier (2)\\CNI Conjoint.pdf"));
-            messageHelper.addAttachment(file.getFilename(),file);
+            messageHelper.addAttachment(file.getFilename(),file);*/
         mailSender.send(mimeMessage);
     }
 }
